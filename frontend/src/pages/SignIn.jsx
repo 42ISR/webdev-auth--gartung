@@ -19,7 +19,7 @@ const SignIn = () => {
 
         try {
             const data = await api.loginUser(user)
-            console.log(data)
+            setUser(data.data)
             navigate("/")
         } catch (error) {
             console.error(error)

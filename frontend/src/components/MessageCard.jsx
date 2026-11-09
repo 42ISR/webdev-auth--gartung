@@ -1,4 +1,21 @@
-const MessageCard = ({ likes, content, username, createdAt }) => {
+import { api } from "../api/api"
+import { useMessageStore } from "../store/useMessageStore"
+
+const MessageCard = ({ likes, content, username, createdAt, id }) => {
+    const {getMessages} = useMessageStore()
+
+    const handleDelete = async () => {
+        await api.deleteMessage(id)
+        getMessages()
+    }
+    const handleLike = async () => {
+       await api.likeMessage(id)
+        getMessages()
+    }
+    const handleReport = async () => {
+        await api.reportMessage(id)
+        getMessages()
+    }
     return (
         <div className="message-card">
             <div className="message-content">{content}</div>
